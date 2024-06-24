@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height to center the content vertically */
+    margin: 0; /* Remove margin to avoid unintended spacing */
+    text-align: center; /* Center-align text */
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.feature {
+    margin: 20px 0;
+
+}
+
+.backgroundImg {
+    width: 50%;
+    height: auto; 
+    margin: 20px 0;
+}
+
+.btnContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    gap: 10px; 
+}
+
+.btn {
+    padding: 10px 25px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
