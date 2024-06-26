@@ -1,6 +1,6 @@
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-
+import { getFirestore } from "firebase/firestore";
 // 1. Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyClu5JxorWcmTW_e-MV8k6gYIANKINO5pI",
@@ -14,6 +14,5 @@ const firebaseConfig = {
 
 // 2. Initialize Firebase
 export const app = initializeApp(firebaseConfig);
-
-// 3. Use the Firebase Authentication service
 export const auth = getAuth(app);
+export const db = getFirestore(app);
