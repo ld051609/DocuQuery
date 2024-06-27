@@ -3,6 +3,7 @@ from flask import Flask, flash, request, redirect, url_for, jsonify, session
 from werkzeug.utils import secure_filename
 from flask_cors import CORS, cross_origin
 from process import chat_with_pdf
+
 # Patch flask_cors to use collections.abc.Iterable
 import collections
 if not hasattr(collections, 'Iterable'):
@@ -12,7 +13,7 @@ ALLOWED_EXTENSIONS = {'pdf'}
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './folder'
-app.secret_key = 'supersecretkey'  # Needed for session management
+
 cors = CORS(app)
 
 def allowed_file(filename):
@@ -21,9 +22,7 @@ def allowed_file(filename):
 @app.route('/upload', methods=['POST'])
 @cross_origin()
 def upload_file():
-    if 'file' not in request.files:
-        return jsonify({"error": "No file part"}), 400
-    
+
     # Get the file from the request
     file = request.files['file']
     # Chech if the file is empty
@@ -36,8 +35,7 @@ def upload_file():
         os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)  # Ensure the folder exists
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         
-        # Store the filename in the session
-        session['filename'] = filename
+ 
 
         return jsonify({"message": "File uploaded successfully", "filename": filename}), 200
     
@@ -47,14 +45,13 @@ def upload_file():
 @app.route('/chat', methods=['POST'])
 @cross_origin()
 def chatbit():
-    # if 'filename' not in session:
-    #     return jsonify({"error": "No file in session"}), 400
-    
+
     question = request.json['question']
-    print(f'question: {question}')
+    filename = request.json['filename']
+    print(f'question: {question} filename: {filename}')
     if 'question' not in request.json:
         return jsonify({"error": "No question provided"}), 400
-    # filename = session['filename']
+
     filename = 'nke-10k-2023.pdf'
     file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     print(f'file_path: {file_path}')
