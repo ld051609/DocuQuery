@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import styles from './Chatbot.module.css';
 import {auth, db} from '../../firebase';
 import {query, collection, orderBy, onSnapshot, limit} from 'firebase/firestore';
@@ -6,9 +6,10 @@ import SendMessage from './SendMessage';
 import Message from './Message';
 import { useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
+import { FilenameContext } from '../../FilenameContext';
 const Chatbot = () => {
   const [historyMessages, setHistoryMessages] = useState([]);
-
+  const {filename} = useContext(FilenameContext);
 
   useEffect(() => {
     // Check if the user is authenticated
@@ -17,6 +18,12 @@ const Chatbot = () => {
         navigate('/login')
       }
     })
+
+    // Check if the file is upload or not
+    if(!filename){
+      navigate('/about')
+      alert('Please upload a pdf file first');
+    }
 
     const q = query(
       collection(db, 'chat'), 

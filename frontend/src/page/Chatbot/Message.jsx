@@ -7,7 +7,6 @@ const Message = ({message}) => {
     try {
       const docRef = doc(db, 'chat', message.id);
       await deleteDoc(docRef);
-      alert('Document deleted successfully!');
       console.log('Document deleted!');
     } catch (error) {
       console.error(error);

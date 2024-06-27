@@ -1,11 +1,14 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import styles from './Chatbot.module.css';
 import {auth, db} from '../../firebase';
 import {addDoc, collection, serverTimestamp} from 'firebase/firestore';
+import { FilenameContext } from '../../FilenameContext';
+
 const SendMessage = () => {
   const [message, setMessage] = useState('');
+  const {filename} = useContext(FilenameContext);
 
   const sendMessage = async() => {
     if(!message){
@@ -22,6 +25,8 @@ const SendMessage = () => {
 
     // Update state immediately to display the message
     setMessage('');
+    console.log('Filename in context fe:', filename);
+
 
     // Call the backend API to get the response
     try {
@@ -30,7 +35,7 @@ const SendMessage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({'question': message }),
+        body: JSON.stringify({'question': message, 'filename': filename}),
       });
       const data = await response.json();
       console.log(data);

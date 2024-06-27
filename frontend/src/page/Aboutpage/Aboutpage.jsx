@@ -1,11 +1,12 @@
 import { onAuthStateChanged, signOut } from 'firebase/auth'
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth } from '../../firebase'
 import styles from './Aboutpage.module.css'
-
+import { FilenameContext } from '../../FilenameContext'
 const About = () => {
     const [file, setFile] = React.useState(null)
+    const {filename, setFilename} = useContext(FilenameContext)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -48,6 +49,7 @@ const About = () => {
             }
             const data = await response.json()
             console.log(data)
+            setFilename(data.filename)
             navigate('/chatbot')
         } catch (error) {
             console.log(error)
