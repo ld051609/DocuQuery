@@ -1,18 +1,18 @@
 import { getAuth } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-// 1. Your web app's Firebase configuration
+
 const firebaseConfig = {
-    apiKey: "AIzaSyClu5JxorWcmTW_e-MV8k6gYIANKINO5pI",
-    authDomain: "docuquery-ai.firebaseapp.com",
-    projectId: "docuquery-ai",
-    storageBucket: "docuquery-ai.appspot.com",
-    messagingSenderId: "568367813342",
-    appId: "1:568367813342:web:7339af4e810f05a9fda84f",
-    measurementId: "G-ZQF76EXB0E"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
-// 2. Initialize Firebase
+// Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
