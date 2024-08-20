@@ -1,6 +1,6 @@
-# DocuQuery-AI
+# DocuQuery
 
-DocuQuery-AI is a web application that allows users to upload PDF documents and interact with them through a chat interface. Using the Retrieval-Augmented Generation (RAG) technique of Langchain, the application enables users to ask questions about the content of their uploaded PDFs and receive accurate, context-aware responses. The project leverages Firebase for chat functionality, authentication, and authorization.
+DocuQuery is a web application that allows users to upload PDF documents and interact with them through a chat interface. Using the Retrieval-Augmented Generation (RAG) technique of Langchain, the application enables users to ask questions about the content of their uploaded PDFs and receive accurate, context-aware responses. The project leverages Firebase for chat functionality, authentication, and authorization.
 
 ## Table of Contents
 
